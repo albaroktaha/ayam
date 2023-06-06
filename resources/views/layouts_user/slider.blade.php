@@ -62,8 +62,7 @@
             <div class=" col-md-5 offset-md-1">
                 <div class="detail-box">
                     <h1>
-                        Ayamku <br>
-                        Daging Fresh
+                        UD. POTONG AYAM SONI
                     </h1>
                     <p>
                         Apakah Anda mencari ayam potong segar yang berkualitas tinggi untuk memenuhi kebutuhan

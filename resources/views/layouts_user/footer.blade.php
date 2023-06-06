@@ -3,6 +3,6 @@
     </div>
     <p>
         &copy; 2023 All Rights Reserved. Design by
-        <a href="#">Ayamku</a>
+        <a href="#">UD. Potong Ayam Soni</a>
     </p>
 </section>

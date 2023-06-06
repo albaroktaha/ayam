@@ -4,7 +4,8 @@
             <a class="navbar-brand" href="index.html">
                 <img src="{{ asset('assets/images/hen.png') }}" alt="" />
                 <span>
-                    Ayamku
+                    UD. POTONG <br>
+                    AYAM SONI
                 </span>
             </a>
 

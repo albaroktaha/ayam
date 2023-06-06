@@ -14,7 +14,7 @@ body {
 }
 
 .layout_margin {
-  margin: 90px 0;
+  padding: 90px 0;
 }
 
 .layout_padding {
@@ -30,7 +30,7 @@ body {
 }
 
 .layout_padding2-bottom {
-  padding-bottom: 45px;
+  padding-bottom: 90px;
 }
 
 .layout_padding-top {
@@ -39,6 +39,10 @@ body {
 
 .layout_padding-bottom {
   padding-bottom: 90px;
+}
+
+.layout_padding-pilihan {
+    margin-top: 0;
 }
 
 .heading_container {
@@ -273,6 +277,12 @@ a:focus {
 .custom_nav-container .navbar-toggler .navbar-toggler-icon {
   background-image: url(../images/menu.png);
   background-size: 55px;
+}
+
+.custom_background-location {
+    background-image: url(../images/pattern.jpg);
+    background-repeat: repeat;
+    background-size: 600px;
 }
 
 .quote_btn-container a {
