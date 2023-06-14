@@ -39,7 +39,6 @@
                   <th>Price</th>
                   <th>Image</th>
                   <th>Description</th>
-                  <th>Status</th>
                   <th colspan="2" style="text-align: center;">Action</th>
                   <th style="display: none"></th>
                 </tr>
@@ -48,6 +47,7 @@
               <tbody>
                 @forelse($distributor_products as $key => $data)
                 <tr>
+
                   <td>{{$key+1}}</td>
                   <td>{{$data->name}}</td>
                   <td>{{$data->quantity}}</td>
@@ -56,10 +56,12 @@
                     <img src="/images/{{$data->image}}">
                   </td>
                   <td>{{$data->description}}</td>
-                  <td>
+                  {{-- <td>
                     <span class="badge {{ ($data->status == 'Processing') ? 'badge-warning' : 
                       (($data->status == 'Canceled') ? 'badge-danger' :
-                        'badge-success') }}">{{$data->status}}</span></td>
+                        'badge-success') }}">{{$data->status}}
+                    </span>
+                  </td> --}}
                   <td>
                     <a href="#/{{ $data->id }}/edit" style="text-decoration: none;" class="btn btn-sm btn-warning">
                       Edit

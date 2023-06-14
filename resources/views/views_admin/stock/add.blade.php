@@ -32,7 +32,7 @@
 							<div class="field item form-group">
 								<label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="ex. John f. Kennedy" required="required" />
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2" name="names" placeholder="" required="required" />
 								</div>
 							</div>
 
@@ -41,7 +41,7 @@
 									Quantity <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" type="number" class='number' name="quantity" data-validate-minmax="10,100" required='required' placeholder="1">
+									<input class="form-control" type="number" class='number' name="quantity" data-validate-minmax="10,100" required='required' placeholder="">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -49,7 +49,7 @@
 									Price <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" type="number" class='number' name="price" data-validate-minmax="10,100" required='required' placeholder="125.000">
+									<input class="form-control" type="number" class='number' name="price" data-validate-minmax="10,100" required='required' placeholder="">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -57,7 +57,7 @@
 									Image<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" class='file' type="file" name="image" required='required'>
+									<input class="form-control" class='file' type="file" name="file" required='required'>
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -65,7 +65,7 @@
 									Description<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<textarea name="description" class="resizable_textarea form-control" placeholder="This text area automatically resizes its height as you fill in more text courtesy of autosize-master it out..."></textarea>
+									<textarea name="description" class="resizable_textarea form-control" placeholder=""></textarea>
 								</div>
 							</div>
 							<div class="ln_solid">
