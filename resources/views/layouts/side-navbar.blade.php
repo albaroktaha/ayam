@@ -12,8 +12,9 @@
                     <li><a href="/product"><i class="fa fa-eye"></i>Show All Products</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-shopping-cart"></i> Orders</a></li>
-            <li><a><i class="fa fa-wrench"></i> Change Password</a></li>
+            <li><a href="/stock"><i class="fa fa-folder-open"></i> Stock</a></li>
+            <li><a href="/orders"><i class="fa fa-shopping-cart"></i> Orders</a></li>
+            <li><a href="/change_password"><i class="fa fa-wrench"></i> Change Password</a></li>
         </ul>
     </div>
 

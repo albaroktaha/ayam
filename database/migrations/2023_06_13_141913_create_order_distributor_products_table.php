@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('total');
             $table->text('notes')->nullable();
+            $table->enum('status', ['Completed', 'Processing', 'Canceled']);
             $table->timestamps();
             $table->uuid('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');

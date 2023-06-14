@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('price');
             $table->text('image')->nullable();
             $table->text('description');
+            $table->uuid('id_users');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
