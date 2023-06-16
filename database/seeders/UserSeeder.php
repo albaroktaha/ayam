@@ -18,19 +18,16 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
                 'username' => 'admin',
                 'password' => Hash::make('admin'),
                 'roles' => "Admin",
             ],
             [
-                'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
                 'username' => 'user',
                 'password' => Hash::make('user'),
                 'roles' => "User",
             ],
             [
-                'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
                 'username' => 'distributor',
                 'password' => Hash::make('distributor'),
                 'roles' => "Distributor",

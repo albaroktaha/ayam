@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('distributor', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name', 255);
-            $table->integer('phone');
+            $table->string('phone', 15);
             $table->text('address');
-            $table->uuid('id_user');
+            $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }

@@ -11,7 +11,7 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							<a href="/stock">
+							<a href="/product-distributor">
 								<i class="fa fa-arrow-circle-left"></i> Back
 							</a>
 						</h2>
@@ -26,13 +26,14 @@
 					</div>
 
 					<div class="x_content">
-						<form action="/stock" method="POST" enctype="multipart/form-data">
+						<form action="/product-distributor/{{$distributor_products->id}}" method="POST" enctype="multipart/form-data">
 							@csrf
+							@method('put')
 							<span class="section">Product Stock</span>
 							<div class="field item form-group">
 								<label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" data-validate-length-range="6" data-validate-words="2" name="names" placeholder="" required="required" />
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2" name="names" value="{{$distributor_products->name}}" required="required" />
 								</div>
 							</div>
 
@@ -41,7 +42,7 @@
 									Quantity <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" type="number" class='number' name="quantity" data-validate-minmax="10,100" required='required' placeholder="">
+									<input class="form-control" type="number" class='number' name="quantity" data-validate-minmax="10,100" required='required' value="{{$distributor_products->quantity}}">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -49,7 +50,7 @@
 									Price <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" type="number" class='number' name="price" data-validate-minmax="10,100" required='required' placeholder="">
+									<input class="form-control" type="number" class='number' name="price" data-validate-minmax="10,100" required='required' value="{{$distributor_products->price}}">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -57,7 +58,8 @@
 									Image<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" class='file' type="file" name="file" required='required'>
+									<input class="form-control" class='file' type="file" name="file">
+									<img src="{{ asset('/uploads/'.$distributor_products->image) }}" alt="" width="100px" height="100px">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -65,18 +67,18 @@
 									Description<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<textarea name="description" class="resizable_textarea form-control" placeholder=""></textarea>
+									<textarea name="description" class="resizable_textarea form-control" placeholder="">{{$distributor_products->description}}</textarea>
 								</div>
 							</div>
 							<div class="ln_solid">
 								<div class="form-group">
 									<div class="col-md-6 offset-md-3">
-										<button type='submit' class="btn btn-success">
-											Add
+										<button type='submit' class="btn btn-warning">
+											Edit
 										</button>
-										<button type='reset' class="btn btn-danger">
-											Reset
-										</button>
+										<a href="/product-distributor" class="btn btn-danger">
+											Cancel
+										</a>
 									</div>
 								</div>
 							</div>

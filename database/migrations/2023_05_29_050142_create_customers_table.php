@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name', 255);
             $table->enum('gender', ['Laki-Laki', 'Perempuan']);
             $table->string('email', 255);
             $table->text('image')->nullable();
-            $table->integer('phone');
+            $table->string('phone', 15);
             $table->text('address');
-            $table->uuid('id_users');
+            $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }

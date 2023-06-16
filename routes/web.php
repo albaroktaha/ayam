@@ -28,10 +28,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
+    
     Route::get('/dashboard', function () {
-        return view('views_admin.index');
+        return view('index');
     });
     
-    Route::resource('stock', DistributorProductController::class);
+    Route::resource('/product-distributor', DistributorProductController::class);
 
 });

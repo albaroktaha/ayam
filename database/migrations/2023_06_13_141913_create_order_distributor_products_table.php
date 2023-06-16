@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_distributor_products', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name_product', 255);
             $table->integer('quantity');
             $table->integer('price');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->enum('status', ['Completed', 'Processing', 'Canceled']);
             $table->timestamps();
-            $table->uuid('id_users');
+            $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
     }

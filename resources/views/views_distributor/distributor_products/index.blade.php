@@ -28,7 +28,7 @@
                   <div class="col-sm-12">
                     <div class="card-box table-responsive">
             <p class="text-muted font-13 m-b-30">
-              <a href="/stock/create" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Product</a>
+              <a href="/product-distributor/create" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Add Product</a>
             </p>
             <table id="datatable-fixed-header" class="table table-striped table-bordered" style="width:100%">
               <thead>
@@ -53,7 +53,7 @@
                   <td>{{$data->quantity}}</td>
                   <td>{{$data->price}}</td>
                   <td>
-                    <img src="/images/{{$data->image}}">
+                    <img src="/uploads/{{$data->image}}" width="100px" height="100px">
                   </td>
                   <td>{{$data->description}}</td>
                   {{-- <td>
@@ -63,12 +63,12 @@
                     </span>
                   </td> --}}
                   <td>
-                    <a href="#/{{ $data->id }}/edit" style="text-decoration: none;" class="btn btn-sm btn-warning">
+                    <a href="/product-distributor/{{ $data->id }}/edit" style="text-decoration: none;" class="btn btn-sm btn-warning">
                       Edit
                     </a>
                   </td>
                   <td>
-                    <form method="POST" action="#/{{ $data->petugas_id }}">
+                    <form method="POST" action="/product-distributor/{{ $data->id }}">
                       @csrf
                       @method('delete')
                       <input class="btn btn-sm btn-danger" type="submit" value="Hapus">
@@ -77,6 +77,7 @@
                   <td style="display: none"></td>
                 </tr>
                 @empty
+                <h2>{{__('Data Kosong')}}</h2>
                 @endforelse
               </tbody>
             </table>
