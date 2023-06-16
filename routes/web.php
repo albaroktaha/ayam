@@ -27,12 +27,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'cekrole'])->group(function () {
     
     Route::get('/dashboard', function () {
         return view('index');
     });
     
-    Route::resource('/product-distributor', DistributorProductController::class);
+    Route::resource('/product-distributor', DistributorProductController::class)->middleware('cekAdmin');
 
 });
