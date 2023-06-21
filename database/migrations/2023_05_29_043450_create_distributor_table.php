@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('distributor', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->string('phone', 15);
-            $table->text('address');
+            $table->string('distributor_name', 255);
+            $table->string('distributor_phone', 15);
+            $table->text('distributor_address');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });

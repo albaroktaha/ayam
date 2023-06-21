@@ -15,7 +15,7 @@ class DistributorProductsModels extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['id','name', 'quantity', 'price', 'image', 'description', 'id_distributor'];
+    protected $fillable = ['id','distributor_product_name', 'distributor_product_quantity', 'distributor_product_price', 'distributor_product_image', 'distributor_product_description', 'id_distributor'];
 
     public function DistributorModels()
     {

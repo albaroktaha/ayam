@@ -45,17 +45,18 @@
               </thead>
 
               <tbody>
+                @if(!empty($distributor_products))
                 @forelse($distributor_products as $key => $data)
                 <tr>
 
                   <td>{{$key+1}}</td>
-                  <td>{{$data->name}}</td>
-                  <td>{{$data->quantity}}</td>
-                  <td>{{$data->price}}</td>
+                  <td>{{$data->distributor_product_name}}</td>
+                  <td>{{$data->distributor_product_quantity}}</td>
+                  <td>{{$data->distributor_product_price}}</td>
                   <td>
-                    <img src="/uploads/{{$data->image}}" width="100px" height="100px">
+                    <img src="/uploads/{{$data->distributor_product_image}}" width="100px" height="100px">
                   </td>
-                  <td>{{$data->description}}</td>
+                  <td>{{$data->distributor_product_description}}</td>
                   {{-- <td>
                     <span class="badge {{ ($data->status == 'Processing') ? 'badge-warning' : 
                       (($data->status == 'Canceled') ? 'badge-danger' :
@@ -79,6 +80,10 @@
                 @empty
                 <h2>{{__('Data Kosong')}}</h2>
                 @endforelse
+
+                @else
+                <h3>{{__('Data Kosong')}}</h3>
+                @endif
               </tbody>
             </table>
           </div>

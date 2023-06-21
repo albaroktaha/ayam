@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('distributor_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->text('image')->nullable();
-            $table->text('description');
+            $table->string('distributor_product_name', 255);
+            $table->integer('distributor_product_quantity');
+            $table->integer('distributor_product_price');
+            $table->text('distributor_product_image')->nullable();
+            $table->text('distributor_product_description');
             $table->unsignedBigInteger('id_distributor');
             $table->foreign('id_distributor')->references('id')->on('distributor')->onDelete('cascade');
         });

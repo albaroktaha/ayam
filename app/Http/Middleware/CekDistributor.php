@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CekAdmin
+class CekDistributor
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class CekAdmin
     {
         $user = Auth::user()->roles;
 
-        if($user != "Admin")
+        if($user != "Distributor")
         {
             return redirect('/dashboard');
         }

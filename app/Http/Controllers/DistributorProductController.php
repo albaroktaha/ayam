@@ -24,13 +24,17 @@ class DistributorProductController extends Controller
     public function index()
     {
         $id_user = Auth::user()->id;
-        $id_distributor = DistributorModels::where('id_user', '=', $id_user)->get();
-
-        $distributor_products = DistributorProductsModels::where(
-            'id_distributor', '=', $id_distributor[0]['id']
+        $id_distributor = DistributorModels::where('id_user', '=', $id_user)->first();
+        if(!empty($id_distributor)){
+            $distributor_products = DistributorProductsModels::where(
+            'id_distributor', '=', $id_distributor->id
         )->get();
 
         return view('views_distributor.distributor_products.index', compact('distributor_products'));
+
+        }else{
+            return view('views_distributor.distributor_products.index');
+        }
     }
 
     /**
@@ -50,7 +54,7 @@ class DistributorProductController extends Controller
     {
         $request->validate([
             'names' => ['required', 'string'],
-            'quantity' => ['required', 'integer', 'min:1', 'max:4'],
+            'quantity' => ['required', 'integer', 'min:1'],
             'price' => ['required', 'integer'],
             'file' => ['required', 'mimes:jpg,png,jpeg', 'max:2048'],
             'description' => ['required','min:1','max:255'],
@@ -62,16 +66,16 @@ class DistributorProductController extends Controller
 
         // dd($id_user);
 
-        $distributor_products = DistributorProductsModels::create([
-            'name' => $request['names'],
-            'quantity' => $request['quantity'],
-            'price' => $request['price'],
-            'image' => $namaGambar,
-            'description' => $request['description'],
+        $distributor_product = DistributorProductsModels::create([
+            'distributor_product_name' => $request['names'],
+            'distributor_product_quantity' => $request['quantity'],
+            'distributor_product_price' => $request['price'],
+            'distributor_product_image' => $namaGambar,
+            'distributor_product_description' => $request['description'],
             'id_distributor' => $request['id_distributor']
         ]);
 
-        $distributor_products->save();
+        $distributor_product->save();
 
         //Alert::success('Sukses!', 'Add Stock succeded');
 
@@ -103,7 +107,7 @@ class DistributorProductController extends Controller
     {
         $request->validate([
             'names' => ['required', 'string'],
-            'quantity' => ['required', 'integer', 'min:1', 'max:4'],
+            'quantity' => ['required', 'integer', 'min:1'],
             'price' => ['required', 'integer'],
             'file' => ['mimes:jpg,png,jpeg', 'max:2048'],
             'description' => ['required','min:1','max:255'],
@@ -118,21 +122,21 @@ class DistributorProductController extends Controller
         if($request->has('file')) {
 
             $path = '/uploads/';
-            File::delete(public_path($path. $distributor_products->image));
+            File::delete(public_path($path. $distributor_products->distributor_product_image));
 
             $namaGambar = time().'.'.$request->file->extension();
 
             $request->file->move(public_path('uploads'), $namaGambar);
 
-            $distributor_products->image = $namaGambar;
+            $distributor_products->distributor_product_image = $namaGambar;
 
             $distributor_products->save();
         }
 
-        $distributor_products->name = $request['names'];
-        $distributor_products->quantity = $request['quantity'];
-        $distributor_products->price = $request['price'];
-        $distributor_products->description = $request['description'];
+        $distributor_products->distributor_product_name = $request['names'];
+        $distributor_products->distributor_product_quantity = $request['quantity'];
+        $distributor_products->distributor_product_price = $request['price'];
+        $distributor_products->distributor_product_description = $request['description'];
 
         //Alert::success('Sukses!', 'Add Stock succeded');
 
@@ -149,7 +153,7 @@ class DistributorProductController extends Controller
         $distributor_products = DistributorProductsModels::find($id);
 
         $path = '/uploads/';
-        File::delete(public_path($path. $distributor_products->image));
+        File::delete(public_path($path. $distributor_products->distributor_products_image));
 
         $distributor_products->delete();
 

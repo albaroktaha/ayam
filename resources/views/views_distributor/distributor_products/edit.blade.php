@@ -33,7 +33,7 @@
 							<div class="field item form-group">
 								<label class="col-form-label col-md-3 col-sm-3  label-align">Name<span class="required">*</span></label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" data-validate-length-range="6" data-validate-words="2" name="names" value="{{$distributor_products->name}}" required="required" />
+									<input class="form-control" data-validate-length-range="6" data-validate-words="2" name="names" value="{{$distributor_products->distributor_product_name}}" required="required" />
 								</div>
 							</div>
 
@@ -42,7 +42,7 @@
 									Quantity <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" type="number" class='number' name="quantity" data-validate-minmax="10,100" required='required' value="{{$distributor_products->quantity}}">
+									<input class="form-control" type="number" class='number' name="quantity" data-validate-minmax="10,100" required='required' value="{{$distributor_products->distributor_product_quantity}}">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -50,7 +50,7 @@
 									Price <span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<input class="form-control" type="number" class='number' name="price" data-validate-minmax="10,100" required='required' value="{{$distributor_products->price}}">
+									<input class="form-control" type="number" class='number' name="price" data-validate-minmax="10,100" required='required' value="{{$distributor_products->distributor_product_price}}">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -59,7 +59,7 @@
 								</label>
 								<div class="col-md-6 col-sm-6">
 									<input class="form-control" class='file' type="file" name="file">
-									<img src="{{ asset('/uploads/'.$distributor_products->image) }}" alt="" width="100px" height="100px">
+									<img src="{{ asset('/uploads/'.$distributor_products->distributor_product_image) }}" alt="" width="100px" height="100px">
 								</div>
 							</div>
 							<div class="field item form-group">
@@ -67,7 +67,7 @@
 									Description<span class="required">*</span>
 								</label>
 								<div class="col-md-6 col-sm-6">
-									<textarea name="description" class="resizable_textarea form-control" placeholder="">{{$distributor_products->description}}</textarea>
+									<textarea name="description" class="resizable_textarea form-control" placeholder="">{{$distributor_products->distributor_product_description}}</textarea>
 								</div>
 							</div>
 							<div class="ln_solid">

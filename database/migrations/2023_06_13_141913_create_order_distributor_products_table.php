@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('order_distributor_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name_product', 255);
-            $table->integer('quantity');
-            $table->integer('price');
-            $table->integer('total');
-            $table->text('notes')->nullable();
-            $table->enum('status', ['Completed', 'Processing', 'Canceled']);
+            $table->string('order_distributor_product_name_product', 255);
+            $table->integer('order_distributor_product_quantity');
+            $table->integer('order_distributor_product_order_distributor_product_price');
+            $table->integer('order_distributor_product_total');
+            $table->text('order_distributor_product_notes')->nullable();
+            $table->enum('order_distributor_product_status', ['Completed', 'Processing', 'Canceled']);
             $table->timestamps();
             $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
