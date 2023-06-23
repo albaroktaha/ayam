@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('order_distributor_product_quantity');
             $table->integer('order_distributor_product_order_distributor_product_price');
             $table->integer('order_distributor_product_total');
-            $table->text('order_distributor_product_notes')->nullable();
             $table->enum('order_distributor_product_status', ['Completed', 'Processing', 'Canceled']);
             $table->timestamps();
             $table->unsignedBigInteger('id_users');
