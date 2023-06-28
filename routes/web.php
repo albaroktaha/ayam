@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DistributorProductController;
+use App\Http\Controllers\OrdersDistributor;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\ProductAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,10 @@ Route::middleware(['auth', 'cekrole'])->group(function () {
     });
     
     Route::resource('/product-distributor', DistributorProductController::class)->middleware('cekDistributor');
+
+    Route::resource('/orders-distributor', OrdersDistributor::class)->middleware('cekDistributor');
+
+    Route::resource('/product', ProductAdmin::class)->middleware('cekAdmin');
 
     Route::resource('/stock', StockController::class)->middleware('cekAdmin');
 

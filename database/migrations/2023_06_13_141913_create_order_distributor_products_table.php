@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('order_distributor_products', function (Blueprint $table) {
             $table->id();
             $table->string('order_distributor_product_name_product', 255);
+            $table->string('order_distributor_product_distributor', 255);
             $table->integer('order_distributor_product_quantity');
-            $table->integer('order_distributor_product_order_distributor_product_price');
+            $table->integer('order_distributor_product_price');
             $table->integer('order_distributor_product_total');
-            $table->enum('order_distributor_product_status', ['Completed', 'Processing', 'Canceled']);
+            $table->enum('order_distributor_product_status', ['Completed', 'Pending', 'Canceled']);
             $table->timestamps();
             $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');

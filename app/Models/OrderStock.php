@@ -13,7 +13,7 @@ class OrderStock extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['order_distributor_product_name_product', 'order_distributor_product_quantity', 'order_distributor_product_price', 'order_distributor_product_total', 'order_distributor_product_status', 'created_at', 'updated_at', 'id_users'];
+    protected $fillable = ['order_distributor_product_name_product', 'order_distributor_product_distributor', 'order_distributor_product_quantity', 'order_distributor_product_price', 'order_distributor_product_total', 'order_distributor_product_status', 'created_at', 'updated_at', 'id_users'];
 
     public function User()
     {

@@ -21,4 +21,9 @@ class DistributorModels extends Model
     {
         return $this->hasMany(DistributorProductsModels::class, 'id_distributor');
     }
+
+    public function ProductAdminModels()
+    {
+        return $this->hasMany(ProductAdminModels::class, 'id_distributor');
+    }
 }

@@ -46,44 +46,47 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'product_name' => ['string'],
-            'product_harga' => ['int'],
-            'order_stock' => ['integer'],
-        ]);
-
-        $id = Auth::user()->id;
-
-        $total = $request['order_stock'] * $request['product_harga'];
-
-        $OrderStock = OrderStock::create([
-            'order_distributor_product_name_product' => $request['product_name'],
-            'order_distributor_product_quantity' => $request['order_stock'],
-            'order_distributor_product_price' => $request['product_harga'],
-            'order_distributor_product_total' => $total,
-            'order_distributor_product_status' => "Processing",
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-            'id_users' => $id
-        ]);
-
         $id = $request['id_product'];
-        
-        $ReduceStock = DistributorProductsModels::find($id);
-        $getQuantity = $ReduceStock->distributor_product_quantity;
-        $getStock = $request['order_stock'];
 
-        $reduce = $getQuantity - $getStock;
-        $ReduceStock->distributor_product_quantity = $reduce;
+        $cekStock = DistributorProductsModels::find($id);
+        $getQuantity = $cekStock->distributor_product_quantity;
 
-        $ReduceStock->save();
+        if($request['order_stock'] > $getQuantity)
+        {
+            return redirect('stock');
+        }
+        else{
 
-        // $OrderStock->save();
+            $request->validate([
+                'product_name' => ['string'],
+                'distributor' => ['string'],
+                'product_harga' => ['integer'],
+                'order_stock' => ['integer'],
+            ]);
 
-        //Alert::success('Sukses!', 'Add Stock succeded');
+            $id = Auth::user()->id;
 
-        // dd($request);
-        return redirect('stock');
+            $total = $request['order_stock'] * $request['product_harga'];
+
+            $OrderStock = OrderStock::create([
+                'order_distributor_product_name_product' => $request['product_name'],
+                'order_distributor_product_distributor' => $request['distributor'],
+                'order_distributor_product_quantity' => $request['order_stock'],
+                'order_distributor_product_price' => $request['product_harga'],
+                'order_distributor_product_total' => $total,
+                'order_distributor_product_status' => "Pending",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'id_users' => $id
+            ]);
+
+            $OrderStock->save();
+
+            //Alert::success('Sukses!', 'Add Stock succeded');
+
+            // dd($request);
+            return redirect('stock');
+        }
     }
 
     /**

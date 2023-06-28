@@ -65,7 +65,7 @@
                         Order :
                       </div>
                       <div class="col-sm-5 mr-2">
-                        <input class="form-control" type="text" name="order_stock" data-validate-minmax="10,100" required="required" placeholder="0">
+                        <input class="form-control" type="number" name="order_stock" data-validate-minmax="0,100" min="0" required="required" placeholder="0" max="{{$data->distributor_product_quantity}}">
                       </div>
                     </div>
                     <div class="col-sm-4 emphasis">
