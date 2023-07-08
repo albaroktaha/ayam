@@ -26,16 +26,28 @@ Route::get('/', function () {
     return view('views_user.home');
 });
 
+Route::get('/checkout', function () {
+    return view('views_user.checkout');
+});
+
+Route::get('/products', function () {
+    return view('views_user.product');
+});
+
+Route::get('/log', function () {
+    return view('views_user.log');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'cekrole'])->group(function () {
-    
+
     Route::get('/dashboard', function () {
         return view('index');
     });
-    
+
     Route::resource('/product-distributor', DistributorProductController::class)->middleware('cekDistributor');
 
     Route::resource('/orders-distributor', OrdersDistributor::class)->middleware('cekDistributor');

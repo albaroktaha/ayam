@@ -76,7 +76,7 @@
                         <a href="" class="btn-1">
                             Hubungi Kami
                         </a>
-                        <a href="" class="btn-2">
+                        <a href="{{ url('products') }}" class="btn-2">
                             Belanja Sekarang
                         </a>
                     </div>

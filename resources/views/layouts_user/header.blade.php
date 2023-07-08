@@ -1,7 +1,7 @@
 <header class="header_section">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ url('') }}">
                 <img src="{{ asset('assets/images/hen.png') }}" alt="" />
                 <span>
                     UD. POTONG <br>
@@ -19,8 +19,8 @@
                 </div>
                 <div id="myNav" class="overlay">
                     <div class="overlay-content">
-                        <a href="#">Beranda</a>
-                        <a href="#">Belanja</a>
+                        <a href="{{ url('') }}">Beranda</a>
+                        <a href="{{ url('products') }}">Belanja</a>
                         <a href="#">Kontak Kami</a>
                         <a href="#">Masuk</a>
                         <a href="#">Daftar</a>

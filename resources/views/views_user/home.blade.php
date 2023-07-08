@@ -111,9 +111,11 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="item">
-                            <button type="button" class="btn btn-primary">
-                                Menu lainnya
-                            </button>
+                            <a href="{{ url('products') }}">
+                                <button type="button" class="btn btn-primary">
+                                    Menu lainnya
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
