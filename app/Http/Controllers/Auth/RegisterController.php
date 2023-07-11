@@ -50,9 +50,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'username' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:8'],
+            'fullname' => ['required', 'string'],
+            'no_hp' => ['required', 'integer'],
+            'alamat' => ['required', 'string'],
         ]);
     }
 
@@ -62,12 +64,29 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'username' => $request['username'],
+            'password' => Hash::make($request['password']),
+            'roles' => 'Distributor',
         ]);
+
+        //$user->save();
+
+        dd($request);
+
+        $getDistributorId = User::where('username', '=', $request['username'])->first();
+
+        //dd($getDistributorId->id);
+
+        // $distributor = DistributorModels::create([
+        //     'distributor_name' => $data['fullname'],
+        //     'distributor_phone' => $data['no_hp'],
+        //     'distributor_address' => $data['alamat'],
+        //     'id_user' => $getDistributorId->id,
+        // ]);
+
+        // $distributor->save();
     }
 }

@@ -9,7 +9,7 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form method="POST" action="{{ route('login') }}">
-                @csrf
+              @csrf
               <h1>Masuk Aplikasi</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Username" required="" name="username" />
@@ -42,20 +42,29 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
               <h1>Daftar Akun</h1>
+              <form action="/daftar" method="POST">
+              @csrf
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" class="form-control" placeholder="Username" required name="username" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="password" class="form-control" placeholder="Password" required name="password" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="text" class="form-control" placeholder="Nama PT" required name="fullname" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Daftar</a>
+                <input type="text" class="form-control" placeholder="No. HP" required name="no_hp" />
               </div>
+              <div>
+                <textarea name="alamat" class="form-control" id="" cols="30" rows="10" placeholder="Alamat"></textarea>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-primary submit mt-2">Daftar</button>
+                {{-- <input type="submit" value="Daftar" class="btn btn-primary submit"> --}}
+              </div>
+              </form>
 
               <div class="clearfix"></div>
 
@@ -71,7 +80,6 @@
                   <p>©{{date('Y')}} - UD. Potong Ayam Soni</p>
                 </div>
               </div>
-            </form>
           </section>
         </div>
       </div>

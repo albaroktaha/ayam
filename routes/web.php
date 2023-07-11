@@ -6,6 +6,7 @@ use App\Http\Controllers\DistributorProductController;
 use App\Http\Controllers\OrdersDistributor;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ProductAdmin;
+use App\Http\Controllers\Auth\Daftar;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,9 @@ Route::get('/log', function () {
     return view('views_user.log');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
+
+Route::post('/daftar', [Daftar::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
