@@ -11,23 +11,37 @@
                     </div>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-                        <div class="col-lg-4">
-                            <div class="card shadow-sm">
-                                <img src="{{ asset('assets/images/ayam-1.png') }}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the bulk of the card's content.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        @if (!empty($product))
+                            @forelse($product as $key => $data)
+                                <div class="col-sm-4">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <img src="/uploads/product/{{ $data->product_image }}" class="col card-img-top"
+                                                alt="...">
+                                            <strong class="card-title">{{ $data->product_name }}</strong>
+                                            <p class="card-text">{{ $data->product_price }}</p>
+                                            <div class="container overflow-hidden text-center">
+                                                <div class="row gx-5">
+                                                    <div class="col">
+                                                        <input class="form-control" type="number" name="order_stock"
+                                                            data-validate-minmax="0,100" min="0" required="required"
+                                                            placeholder="0" max="{{ $data->distributor_product_quantity }}">
+                                                    </div>
+                                                    <div class="col">
+                                                        <button type="submit" class="btn btn-success">Beli</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <small class="text-body-secondary">9 mins</small>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+
+                            @empty
+                                <h2>{{ __('Data Kosong') }}</h2>
+                            @endforelse
+                        @else
+                            <h3>{{ __('Data Kosong') }}</h3>
+                        @endif
 
                     </div>
 
