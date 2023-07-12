@@ -62,7 +62,6 @@
               </div>
               <div>
                 <button type="submit" class="btn btn-primary submit mt-2">Daftar</button>
-                {{-- <input type="submit" value="Daftar" class="btn btn-primary submit"> --}}
               </div>
               </form>
 
