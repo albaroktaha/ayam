@@ -81,9 +81,9 @@ class OrdersDistributor extends Controller
         else{
 
             $Order = OrderDistributorModels::find($id);
-
+        
             $ReduceStock = DistributorProductsModels::where('distributor_product_name', '=', $Order->order_distributor_product_name_product)->first();
-
+            
             // dd($ReduceStock);
 
             $getQuantity = $ReduceStock->distributor_product_quantity;

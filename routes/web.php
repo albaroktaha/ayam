@@ -35,8 +35,6 @@ Route::get('/products', function () {
     return view('views_user.product');
 });
 
-Route::get('/products', [App\Http\Controllers\HomeController::class, 'product'])->name('product');
-
 Route::get('/log', function () {
     return view('views_user.log');
 });
