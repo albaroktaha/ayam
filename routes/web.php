@@ -7,6 +7,7 @@ use App\Http\Controllers\OrdersDistributor;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ProductAdmin;
 use App\Http\Controllers\Auth\Daftar;
+use App\Http\Controllers\Auth\RegisterUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +28,6 @@ Route::get('/', function () {
     return view('views_user.home');
 });
 
-Route::get('/checkout', function () {
-    return view('views_user.checkout');
-});
-
-Route::get('/products', function () {
-    return view('views_user.product');
-});
-
 Route::get('/log', function () {
     return view('views_user.log');
 });
@@ -43,7 +36,13 @@ Auth::routes(['register' => false]);
 
 Route::post('/daftar', [Daftar::class, 'store']);
 
+Route::post('/register-customer', [RegisterUserController::class, 'store']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
+
+Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 
 Route::middleware(['auth', 'cekrole'])->group(function () {
 
