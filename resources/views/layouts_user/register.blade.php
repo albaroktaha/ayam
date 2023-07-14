@@ -35,6 +35,15 @@
                         <input type="email" class="form-control mb-2" placeholder="Alamat Email" required
                             name="email" />
                     </div>
+                    <div class="field item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3  label-align">
+                            Image<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" class='file' type="file" name="file"
+                                required='required'>
+                        </div>
+                    </div>
                     <div>
                         <input type="text" class="form-control mb-2" placeholder="Nomor Telepon" required
                             name="phone" />

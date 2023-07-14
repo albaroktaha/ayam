@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\CustomerModels;
 use Illuminate\Support\Facades\Hash;
+use File;
 
 class RegisterUserController extends Controller
 {
@@ -26,9 +27,13 @@ class RegisterUserController extends Controller
             'name'      => ['required', 'string'],
             'gender'    => ['required', 'string'],
             'email'     => ['required', 'string'],
+            'file'      => ['required', 'mimes:jpg,png,jpeg', 'max:2048'],
             'phone'     => ['required', 'numeric'],
             'address'   => ['required', 'string'],
         ]);
+
+        $namaGambar = time().'.'.$request->file->extension();
+        $request->file->move(public_path('uploads/profile/'), $namaGambar);
 
         $user = User::create([
             'username' => $request['username'],
@@ -46,6 +51,7 @@ class RegisterUserController extends Controller
             'customer_name'     => $request['name'],
             'customer_gender'   => $request['gender'],
             'customer_email'    => $request['email'],
+            'customer_image'    => $namaGambar,
             'customer_phone'    => $request['phone'],
             'custommer_address' => $request['address'],
             'id_users'          => $getCustomerId->id,
