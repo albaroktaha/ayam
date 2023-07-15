@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(OrderDistributorModels::class, 'id_users');
     }
+
+    public function Customer()
+    {
+        return $this->hasMany(CustomerModels::class, 'id_users');
+    }
 }

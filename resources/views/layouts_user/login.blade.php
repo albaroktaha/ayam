@@ -27,7 +27,7 @@
                     <div class="clearfix"></div>
                     <div class="separator text-center">
                         <small class="change_link">Belum terdaftar ?
-                            <a href="#signup" class="to_register"> Daftar akun disini </a>
+                            <a href="#" data-toggle="modal" class="to_register" data-target="#registerModal" data-dismiss="modal"> Daftar akun disini </a>
                         </small>
                         <div class="clearfix"></div>
                     </div>

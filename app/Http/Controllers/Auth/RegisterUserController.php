@@ -32,7 +32,10 @@ class RegisterUserController extends Controller
             'address'   => ['required', 'string'],
         ]);
 
+        // dd($request);
+
         $namaGambar = time().'.'.$request->file->extension();
+
         $request->file->move(public_path('uploads/profile/'), $namaGambar);
 
         $user = User::create([
@@ -45,7 +48,7 @@ class RegisterUserController extends Controller
 
         $getCustomerId = User::where('username', '=', $request['username'])->first();
 
-        // dd($getDistributorId->id);
+        // dd($getCustomerId->id);
 
         $customer = CustomerModels::create([
             'customer_name'     => $request['name'],
@@ -53,7 +56,7 @@ class RegisterUserController extends Controller
             'customer_email'    => $request['email'],
             'customer_image'    => $namaGambar,
             'customer_phone'    => $request['phone'],
-            'custommer_address' => $request['address'],
+            'customer_address' => $request['address'],
             'id_users'          => $getCustomerId->id,
         ]);
 

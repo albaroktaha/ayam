@@ -16,4 +16,9 @@ class CustomerModels extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['id','customer_name','customer_gender','customer_email','customer_image','customer_phone', 'customer_address', 'id_users'];
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

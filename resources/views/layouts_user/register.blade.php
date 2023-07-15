@@ -1,6 +1,6 @@
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center" id="exampleModalLabel">Selamat datang kembali, <br><small>Silahkan
@@ -12,7 +12,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/register-customer" method="POST">
+                <form action="/register-customer" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div>
                         <input type="text" class="form-control mb-2" placeholder="Username" required
@@ -26,7 +26,7 @@
                         <input type="text" class="form-control mb-2" placeholder="Nama Lengkap" required
                             name="name" />
                     </div>
-                    <select class="form-control mb-2" aria-label="Gender">
+                    <select class="form-control mb-2" aria-label="Gender" name="gender">
                         <option selected>Jenis Kelamin</option>
                         <option value="Laki-Laki" name="gender">Laki-Laki</option>
                         <option value="Perempuan" name="gender">Perempuan</option>
@@ -52,16 +52,16 @@
                         <input type="text" class="form-control mb-2" placeholder="Alamat" required name="address" />
                     </div>
                     <div class="text-center mt-2">
-                        <button class="btn btn-primary submit" type="submit">Daftar</button>
+                        <button type="submit" class="btn btn-primary submit">Daftar</button>
                     </div>
+                    </form>
                     <div class="clearfix"></div>
                     <div class="separator text-center">
                         <small>Sudah punya akun?
-                            <a href="#" data-toggle="modal" data-target="#registerModal">Daftar> Masuk disini </a>
+                            <a href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Masuk disini </a>
                         </small>
                         <div class="clearfix"></div>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
