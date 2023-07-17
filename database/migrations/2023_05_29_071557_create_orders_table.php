@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('price');
             $table->integer('total');
+            $table->enum('status', ['Success', 'Pending', 'Cancel']);
             $table->timestamps();
             $table->unsignedBigInteger('id_customer');
             $table->foreign('id_customer')->references('id')->on('customers')->onDelete('cascade');
