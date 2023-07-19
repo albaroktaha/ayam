@@ -13,7 +13,7 @@ class OrderModels extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name_customer', 'name_product', 'quantity', 'price', 'total', 'created_at', 'updated_at', 'id_customer'];
+    protected $fillable = ['name_customer', 'name_product', 'quantity', 'price', 'total', 'status', 'created_at', 'updated_at', 'id_customer'];
 
     public function User()
     {

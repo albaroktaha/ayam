@@ -42,6 +42,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
 
+Route::post('/buy', [App\Http\Controllers\OrderController::class, 'store']);
+
 Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 
 Route::middleware(['auth', 'cekrole'])->group(function () {

@@ -12,35 +12,43 @@
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                         <div class="col-lg-4">
-                            <div class="card shadow-sm">
-                                @if (!@empty($product))
-                                    @forelse ($product as $key => $data)
-                                        <img src="/uploads/product/{{ $data->product_image }}" class="card-img-top"
-                                            alt="...">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $data->product_name }}</h5>
-                                            <div class="card-text">
-                                                <small>{{ $data->product_description }}</small>
-                                            </div>
-                                            <div class="card-text">
-                                                <strong>Rp {{ $data->product_price }}</strong>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <input class="form-control mr-1" type="number" name="order_stock"
-                                                        data-validate-minmax="0,100" min="0" required="required"
-                                                        placeholder="0" max="{{ $data->product_quantity }}">
-                                                    <button type="button" class="btn btn-sm btn-success">Beli</button>
+                            <form action="{{ asset('/buy') }}" method="post">
+                                @csrf
+                                <div class="card shadow-sm">
+                                    @if (!@empty($product))
+                                        @forelse ($product as $key => $data)
+                                            <img src="/uploads/product/{{ $data->product_image }}" class="card-img-top"
+                                                alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $data->product_name }}
+                                                    <input type="hidden" name="name_product"
+                                                        value="{{ $data->product_name }}">
+                                                </h5>
+                                                <div class="card-text">
+                                                    <small>{{ $data->product_description }}</small>
+                                                </div>
+                                                <div class="card-text">
+                                                    <strong>Rp {{ $data->product_price }}</strong>
+                                                    <input type="hidden" name="price" value="{{ $data->product_price }}">
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group">
+                                                        <input class="form-control mr-1" type="number" name="quantity"
+                                                            data-validate-minmax="0,100" min="0" required="required"
+                                                            placeholder="0" max="{{ $data->product_quantity }}">
+                                                        <button type="submit" class="btn btn-sm btn-success">Beli</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @empty
+
+                                        @empty
+                                            <span>Data Kosong</span>
+                                        @endforelse
+                                    @else
                                         <span>Data Kosong</span>
-                                    @endforelse
-                                @else
-                                    <span>Data Kosong</span>
-                                @endif
-                            </div>
+                                    @endif
+                                </div>
+                            </form>
                         </div>
 
                     </div>
