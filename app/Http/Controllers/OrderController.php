@@ -18,8 +18,6 @@ class OrderController extends Controller
         $customer = CustomerModels::where('id_users', '=', $id_customer)->first();
         $getCustomer = $customer->customer_name;
 
-
-
         $order = OrderModels::join('users', 'orders.id_customer', '=', 'users.id')
         ->where('name_customer', '=', $getCustomer)
         ->select('orders.*', 'users.username')
@@ -55,10 +53,60 @@ class OrderController extends Controller
             'id_customer'   => $getCustomer->id
         ]);
 
-        $order->save();
+        //$order->save();
 
-        redirect('checkout');
+        //dd($order);
 
-        // dd($order);
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            // 'item_details' => array(
+            //     'name' => $order->name_product,
+            //     'price' => $order->price,
+            //     'quantity' => $order->quantity,
+            // ),
+            'transaction_details' => array(
+                'order_id' => $order->id,
+                'gross_amount' => $order->total,
+            ),
+            'customer_details' => array(
+                'first_name' => ucfirst($getCustomer->customer_name),
+                'email' => $getCustomer->customer_email,
+                'phone' => $getCustomer->customer_phone,
+            ),
+        );
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        return view('views_user.checkout', compact('snapToken', 'order'));
+    }
+
+    public function callback(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+
+        $hash = hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+
+        if($hash == $request->signature_key)
+        {
+            if($request->transaction_status == "capture")
+            {
+                $order = OrderModels::find($request->order_id);
+                $order->update(['status' => "Success"]);
+            }
+        }
+    }
+
+    public function invoice($id)
+    {
+        $order = OrderModels::find($id);
+        return view('views_user.invoice', compact($order));
     }
 }

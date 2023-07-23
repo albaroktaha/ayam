@@ -12,7 +12,7 @@
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                         <div class="col-lg-4">
-                            <form action="{{ asset('/buy') }}" method="post">
+                            <form action="{{ asset('/checkout') }}" method="post">
                                 @csrf
                                 <div class="card shadow-sm">
                                     @if (!@empty($product))
