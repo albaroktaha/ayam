@@ -12,7 +12,7 @@
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                         @if (!@empty($product))
                             @forelse ($product as $key => $data)
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 mb-3">
                                     <form action="{{ asset('/checkout') }}" method="post">
                                         @csrf
                                         <div class="card shadow-sm">
