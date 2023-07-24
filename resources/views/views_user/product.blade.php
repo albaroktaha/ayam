@@ -10,13 +10,13 @@
                         <h2>PRODUK KAMI</h2>
                     </div>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        @if (!@empty($product))
+                            @forelse ($product as $key => $data)
+                                <div class="col-lg-4">
+                                    <form action="{{ asset('/checkout') }}" method="post">
+                                        @csrf
+                                        <div class="card shadow-sm">
 
-                        <div class="col-lg-4">
-                            <form action="{{ asset('/checkout') }}" method="post">
-                                @csrf
-                                <div class="card shadow-sm">
-                                    @if (!@empty($product))
-                                        @forelse ($product as $key => $data)
                                             <img src="/uploads/product/{{ $data->product_image }}" class="card-img-top"
                                                 alt="...">
                                             <div class="card-body">
@@ -34,22 +34,23 @@
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
                                                         <input class="form-control mr-1" type="number" name="quantity"
-                                                            data-validate-minmax="0,100" min="0" required="required"
-                                                            placeholder="0" max="{{ $data->product_quantity }}">
+                                                            data-validate-minmax="0,100" min="0" placeholder="0"
+                                                            max="{{ $data->product_quantity }}">
                                                         <button type="submit" class="btn btn-sm btn-success">Beli</button>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                        @empty
-                                            <span>Data Kosong</span>
-                                        @endforelse
-                                    @else
-                                        <span>Data Kosong</span>
-                                    @endif
+
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
+                            @empty
+                                <span>Data Kosong</span>
+                            @endforelse
+                        @else
+                            <span>Data Kosong</span>
+                        @endif
 
                     </div>
 
