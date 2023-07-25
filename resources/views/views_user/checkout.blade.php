@@ -16,7 +16,7 @@
                                 {{-- <span class="badge bg-primary rounded-pill">3</span> --}}
                             </h4>
                             @if (!empty($order))
-                            {{-- {{dd($order);}} --}}
+                                {{-- {{dd($order);}} --}}
                                 <ul class="list-group mb-3">
                                     <li class="list-group-item d-flex justify-content-between lh-sm">
                                         <div>
@@ -34,8 +34,8 @@
                                     <button class="btn btn-primary me-md-2" type="button" id="pay-button">Bayar</button>
                                 </div>
                             @else
-                            <span>Data Kosong</span>
-                        @endif
+                                <span>Data Kosong</span>
+                            @endif
                         </div>
                     </div>
 
@@ -45,33 +45,34 @@
     </section>
 
     <script type="text/javascript">
-      // For example trigger on button clicked, or any time you need
-      var payButton = document.getElementById('pay-button');
-      payButton.addEventListener('click', function () {
-        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay('{{$snapToken}}', {
-          onSuccess: function(result){
-            /* You may add your own implementation here */
-            // alert("payment success!");
-            window.location.href = '/invoice/{{$order->id}}'
-            console.log(result);
-          },
-          onPending: function(result){
-            /* You may add your own implementation here */
-            alert("wating your payment!"); console.log(result);
-          },
-          onError: function(result){
-            /* You may add your own implementation here */
-            alert("payment failed!"); console.log(result);
-          },
-          onClose: function(){
-            /* You may add your own implementation here */
-            alert('you closed the popup without finishing the payment');
-          }
-        })
-      });
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+            window.snap.pay('{{ $snapToken }}', {
+                onSuccess: function(result) {
+                    /* You may add your own implementation here */
+                    // alert("payment success!");
+                    window.location.href = '/invoice/{{ $order->id }}'
+                    console.log(result);
+                },
+                onPending: function(result) {
+                    /* You may add your own implementation here */
+                    alert("wating your payment!");
+                    console.log(result);
+                },
+                onError: function(result) {
+                    /* You may add your own implementation here */
+                    alert("payment failed!");
+                    console.log(result);
+                },
+                onClose: function() {
+                    /* You may add your own implementation here */
+                    alert('you closed the popup without finishing the payment');
+                }
+            })
+        });
     </script>
 
 
 @endsection
-
