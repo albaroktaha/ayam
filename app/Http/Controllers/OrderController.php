@@ -118,6 +118,6 @@ class OrderController extends Controller
     public function invoice($id)
     {
         $order = OrderModels::find($id);
-        return view('views_user.invoice', compact($order));
+        return view('views_user.invoice', compact('order'));
     }
 }
