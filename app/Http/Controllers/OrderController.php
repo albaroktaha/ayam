@@ -67,15 +67,39 @@ class OrderController extends Controller
         \Midtrans\Config::$is3ds = true;
 
         $params = array(
-            // 'item_details' => array(
-            //     'name' => $order->name_product,
-            //     'price' => $order->price,
-            //     'quantity' => $order->quantity,
-            // ),
             'transaction_details' => array(
                 'order_id' => $order->id,
                 'gross_amount' => $order->total,
             ),
+            // 'enabled_payments' => array([
+            //     'credit_card',
+            //     'gopay',
+            //     'shopeepay',
+            //     'permata_va',
+            //     'bca_va',
+            //     'bni_va',
+            //     'bri_va',
+            //     'echannel',
+            //     'other_va',
+            //     'danamon_online',
+            //     'mandiri_clickpay',
+            //     'cimb_clicks',
+            //     'bca_klikbca',
+            //     'bca_klikpay',
+            //     'bri_epay',
+            //     'xl_tunai',
+            //     'indosat_dompetku',
+            //     'kioson',
+            //     'Indomaret',
+            //     'alfamart',
+            //     'akulaku'
+            // ]),
+            'item_details' => array([
+                'id' => $order->id,
+                'name' => $order->name_product,
+                'price' => $order->price,
+                'quantity' => $order->quantity,
+            ]),
             'customer_details' => array(
                 'first_name' => ucfirst($getCustomer->customer_name),
                 'email' => $getCustomer->customer_email,
@@ -96,7 +120,7 @@ class OrderController extends Controller
 
         if($hash == $request->signature_key)
         {
-            if($request->transaction_status == "capture")
+            if($request->transaction_status == "capture" or $request->transaction_status == "settlement")
             {
                 $order = OrderModels::find($request->order_id);
                 $order->update(['status' => "Success"]);

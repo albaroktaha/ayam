@@ -86,7 +86,8 @@ class ProductAdmin extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = ProductAdminModels::find($id);
+        return view('views_admin.product.edit', compact('product'));
     }
 
     /**
@@ -94,7 +95,44 @@ class ProductAdmin extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'names' => ['required', 'string'],
+            'quantity' => ['required', 'integer', 'min:1'],
+            'price' => ['required', 'integer'],
+            'file' => ['mimes:jpg,png,jpeg', 'max:2048'],
+            'description' => ['required','min:1','max:255'],
+        ],
+        [
+            'file.mimes' => "File bukan foto",
+            'file.max' => "File tidak boleh lebih dari 2MB"
+        ]);
+
+        $product = ProductAdminModels::find($id);
+
+        if($request->has('file')) {
+
+            $path = '/uploads/product/';
+            File::delete(public_path($path. $product->product_image));
+
+            $namaGambar = time().'.'.$request->file->extension();
+
+            $request->file->move(public_path($path), $namaGambar);
+
+            $product->product_image = $namaGambar;
+
+            $product->save();
+        }
+
+        $product->product_name = $request['names'];
+        $product->product_quantity = $request['quantity'];
+        $product->product_price = $request['price'];
+        $product->product_description = $request['description'];
+
+        //Alert::success('Sukses!', 'Add Stock succeded');
+
+        $product->save();
+
+        return redirect('product');
     }
 
     /**
@@ -102,6 +140,15 @@ class ProductAdmin extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = ProductAdminModels::find($id);
+
+        $path = '/uploads/';
+        File::delete(public_path($path. $product->product_image));
+
+        $product->delete();
+
+        // Alert::success('Sukses!', 'Pertanyaan sukses dihapus');
+
+        return redirect('/product');
     }
 }
