@@ -33,7 +33,7 @@
             <li><a href="/orders-distributor"><i class="fa fa-shopping-cart"></i> Orders</a></li>
             @endif
 
-            <li><a href="/change_password"><i class="fa fa-wrench"></i> Change Password</a></li>
+            {{-- <li><a href="/change_password"><i class="fa fa-wrench"></i> Change Password</a></li> --}}
         </ul>
     </div>
 
