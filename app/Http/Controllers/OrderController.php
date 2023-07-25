@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CustomerModels;
 use App\Models\OrderModels;
+use App\Models\ProductAdminModels;
 use Carbon\Carbon;
 
 class OrderController extends Controller
@@ -71,29 +72,6 @@ class OrderController extends Controller
                 'order_id' => $order->id,
                 'gross_amount' => $order->total,
             ),
-            // 'enabled_payments' => array([
-            //     'credit_card',
-            //     'gopay',
-            //     'shopeepay',
-            //     'permata_va',
-            //     'bca_va',
-            //     'bni_va',
-            //     'bri_va',
-            //     'echannel',
-            //     'other_va',
-            //     'danamon_online',
-            //     'mandiri_clickpay',
-            //     'cimb_clicks',
-            //     'bca_klikbca',
-            //     'bca_klikpay',
-            //     'bri_epay',
-            //     'xl_tunai',
-            //     'indosat_dompetku',
-            //     'kioson',
-            //     'Indomaret',
-            //     'alfamart',
-            //     'akulaku'
-            // ]),
             'item_details' => array([
                 'id' => $order->id,
                 'name' => $order->name_product,
@@ -123,6 +101,15 @@ class OrderController extends Controller
             if($request->transaction_status == "capture" or $request->transaction_status == "settlement")
             {
                 $order = OrderModels::find($request->order_id);
+
+                $getNameProduct = $order->name_product;
+
+                $getStock = ProductAdminModels::where('product_name', '=', $getNameProduct)->first();
+
+                $updateStock = $getStock->product_quantity - $order->quantity;
+
+                $result = $getStock->update(['product_quantity' => $updateStock]);
+
                 $order->update(['status' => "Success"]);
             }
         }
