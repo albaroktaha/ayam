@@ -120,4 +120,21 @@ class OrderController extends Controller
         $order = OrderModels::find($id);
         return view('views_user.invoice', compact('order'));
     }
+
+    public function log()
+    {
+        $id_customer = Auth::user()->id;
+
+        $customer = CustomerModels::where('id_users', '=', $id_customer)->first();
+        $getCustomer = $customer->customer_name;
+
+        $log = OrderModels::join('users', 'orders.id_customer', '=', 'users.id')
+        ->where('name_customer', '=', $getCustomer)
+        ->select('orders.*', 'users.username')
+        ->get();
+
+        // $order = OrderModels::all();
+        return view('views_user.log', compact('log'));
+    }
 }
+

@@ -46,6 +46,8 @@ Route::get('/products', [App\Http\Controllers\HomeController::class, 'products']
 
 // Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 
+Route::get('/log', [App\Http\Controllers\OrderController::class, 'log']);
+
 Route::post('/checkout', [App\Http\Controllers\OrderController::class, 'store']);
 
 Route::get('/invoice/{id}', [App\Http\Controllers\OrderController::class, 'invoice']);

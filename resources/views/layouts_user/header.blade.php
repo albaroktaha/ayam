@@ -37,7 +37,9 @@
                         @endif
                     </div>
                 </div>
+
                 @include('layouts_user.login')
+
                 @include('layouts_user.register')
             </div>
         </nav>
