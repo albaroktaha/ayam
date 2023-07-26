@@ -6,6 +6,7 @@ use App\Http\Controllers\DistributorProductController;
 use App\Http\Controllers\OrdersDistributor;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ProductAdmin;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\Auth\Daftar;
 use App\Http\Controllers\Auth\RegisterUserController;
 
@@ -42,10 +43,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
 
-//Route::post('/buy', [App\Http\Controllers\OrderController::class, 'store']);
-
-// Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
-
 Route::post('/checkout', [App\Http\Controllers\OrderController::class, 'store']);
 
 Route::get('/invoice/{id}', [App\Http\Controllers\OrderController::class, 'invoice']);
@@ -61,6 +58,10 @@ Route::middleware(['auth', 'cekrole'])->group(function () {
     Route::resource('/orders-distributor', OrdersDistributor::class)->middleware('cekDistributor');
 
     Route::resource('/product', ProductAdmin::class)->middleware('cekAdmin');
+
+    Route::any('/income', [ReportsController::class, 'income'])->middleware('cekAdmin');
+
+    Route::any('/outcome', [ReportsController::class, 'outcome'])->middleware('cekAdmin');
 
     Route::resource('/stock', StockController::class)->middleware('cekAdmin');
 
