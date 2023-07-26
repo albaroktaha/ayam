@@ -33,7 +33,24 @@
             <li><a href="/orders-distributor"><i class="fa fa-shopping-cart"></i> Orders</a></li>
             @endif
 
-            <li><a href="/change_password"><i class="fa fa-wrench"></i> Change Password</a></li>
+            <li>
+                <a>
+                    <i class="fa fa-book"></i> Reports 
+                    <span class="fa fa-chevron-down"></span>
+                </a>
+                <ul class="nav child_menu">
+                    @if(Auth::user()->roles == "Admin")
+                    <li>
+                        <a href="/income"><i class="fa fa-thumbs-up"></i>Income</a>
+                    </li>
+                    <li>
+                        <a href="/outcome"><i class="fa fa-thumbs-down"></i>Outcome</a>
+                    </li>
+                    @endif
+                </ul>
+            </li>
+
+            {{-- <li><a href="/change_password"><i class="fa fa-wrench"></i> Change Password</a></li> --}}
         </ul>
     </div>
 

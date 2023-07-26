@@ -35,6 +35,10 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('assets/build/css/custom.min.css') }}" rel="stylesheet">
+
+    <!-- No Print -->
+
+    @stack('no_print')
 </head>
 
 <body class="nav-md">
@@ -51,12 +55,11 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="{{ asset('assets/images/img.jpg') }}" alt="..."
-                                class="img-circle profile_img">
+                            <img src="uploads/user.png" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>{{Auth::user()->username}}</h2>
+                            <h2>{{ ucfirst(Auth::user()->username)}}</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -78,8 +81,11 @@
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                            </form>
                         </a>
                     </div>
                     <!-- /menu footer buttons -->
