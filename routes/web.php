@@ -44,15 +44,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/products', [App\Http\Controllers\HomeController::class, 'products'])->name('products');
 
-<<<<<<< HEAD
+
 //Route::post('/buy', [App\Http\Controllers\OrderController::class, 'store']);
 
 // Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'index'])->name('order');
 
 Route::get('/log', [App\Http\Controllers\OrderController::class, 'log']);
 
-=======
->>>>>>> 5b0de9c81d831db6a763a1cc2871d35ae45dfe73
 Route::post('/checkout', [App\Http\Controllers\OrderController::class, 'store']);
 
 Route::get('/invoice/{id}', [App\Http\Controllers\OrderController::class, 'invoice']);
