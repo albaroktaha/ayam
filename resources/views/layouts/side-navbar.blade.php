@@ -29,10 +29,6 @@
             @if(Auth::user()->roles == "Admin")
             <li><a href="/stock"><i class="fa fa-folder-open"></i> Stock</a></li>
             <li><a href="/orders"><i class="fa fa-shopping-cart"></i> Orders</a></li>
-            @elseif(Auth::user()->roles == "Distributor")
-            <li><a href="/orders-distributor"><i class="fa fa-shopping-cart"></i> Orders</a></li>
-            @endif
-
             <li>
                 <a>
                     <i class="fa fa-book"></i> Reports 
@@ -49,6 +45,9 @@
                     @endif
                 </ul>
             </li>
+            @elseif(Auth::user()->roles == "Distributor")
+            <li><a href="/orders-distributor"><i class="fa fa-shopping-cart"></i> Orders</a></li>
+            @endif
 
             {{-- <li><a href="/change_password"><i class="fa fa-wrench"></i> Change Password</a></li> --}}
         </ul>
