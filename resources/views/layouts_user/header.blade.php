@@ -25,7 +25,7 @@
                         @else
                             <a href="{{ url('products') }}">Produk</a>
                             <a href="{{ url('checkout') }}">Pembayaran</a>
-                            <a href="#">Riwayat Belanja</a>
+                            <a href="{{ url('log') }}">Riwayat Belanja</a>
                             <hr class="border-white" style="width: 50%">
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
